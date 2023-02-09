@@ -65,7 +65,7 @@ class Blockchain():
             pass
 
         while True:
-            if block.hash()[:self.difficulty] == "0" * difficulty:
+            if block.hash()[:self.difficulty] == "0" * self.difficulty:
                 self.add(block); break
             else:
                 block.nonce += 1
