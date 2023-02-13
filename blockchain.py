@@ -50,13 +50,7 @@ class Blockchain():
         self.chain = chain
     
     def add(self, block):
-        self.chain.append({
-            'hash': block.hash(), 
-            'previous': block.previous_hash, 
-            'number': block.number, 
-            'data': block.data, 
-            'nonce': block.nonce
-        })
+        self.chain.append(block)
 
     def remove(self, block):
         try: block.previous_hash = self.chain[-1].hash()
@@ -97,5 +91,11 @@ def main():
         blockchain.mine(Block(data, num))
     for block in blockchain.chain:
         print(block)
+
+    for block in blockchain.chain:
+        print(block)
+
+    print(blockchain.isValid())
+
 if __name__ == '__main__':
     main()
