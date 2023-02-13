@@ -73,7 +73,7 @@ class Blockchain():
         for i in range(1, len(self.chain)):
             _previous = self.chain[i].previous_hash
             _current = self.chain[i-1].hash()
-            if _previous != _current:
+            if _previous != _current or _current[:self.difficulty] != "0"*self.difficulty:
                 return False
 
     def mine(self, block):
