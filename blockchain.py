@@ -58,6 +58,24 @@ class Blockchain():
             'nonce': block.nonce
         })
 
+    def remove(self, block):
+        try: block.previous_hash = self.chain[-1].hash()
+        except IndexError: pass
+
+        while True:
+            if block.hash()[:self.difficulty] == "0" * self.difficulty:
+                self.add(block); break
+            else:
+                block.nonce += 1
+    
+
+    def isValid(self):
+        for i in range(1, len(self.chain)):
+            _previous = self.chain[i].previous_hash
+            _current = self.chain[i-1].hash()
+            if _previous != _current:
+                return False
+
     def mine(self, block):
         try:
             block.previous_hash = self.chain[-1].get('hash')
